@@ -81,7 +81,8 @@ func printBalances(db *gorm.DB) {
 // Delete all rows in "accounts" table inserted by `main` (i.e., tracked by `acctIDs`)
 func deleteAccounts(db *gorm.DB, accountIDs []uuid.UUID) error {
 	log.Println("Deleting accounts created...")
-	err := db.Where("id IN ?", accountIDs).Delete(Account{}).Error
+	//err := db.Where("id IN ?", accountIDs).Delete(Account{}).Error
+	err := db.Where("Id in ?", accountIDs).Delete(Account{}).Error
 	if err != nil {
 		return err
 	}
